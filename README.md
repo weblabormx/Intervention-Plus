@@ -26,6 +26,8 @@ $image = Image::make('tests/picture.jpg')->resize(300, 200);
 
 - **copy()**: To clone the object easily
 - **resizeWithRatio($width, $height)**: Resize keeping the ratio of the image
+- **backgroundColor($color)**: Add background color to a image with transparency
+- **base64($format = null, $quality = 100)**: to get the base 64 of the image
 
 ### Testing
 

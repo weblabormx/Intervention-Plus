@@ -3,6 +3,7 @@
 namespace WeblaborMX\InterventionPlus;
 
 use Intervention\Image\ImageManager;
+use Intervention\Image\ImageManagerStatic as Intervention;
 
 class Image
 {
@@ -35,13 +36,23 @@ class Image
         return (new Image($object));
     }
 
-    public function save($file_name, $quality = null) 
+    public function backgroundColor($color) 
     {
-        $explode = explode('.', $file_name);
-        $format = end($explode);
-        $content = $this->object->encode($format, $quality);
-        file_put_contents($file_name, $content);
-        return true;
+        $object = $this->copy();
+        $insert_object = (string) $object->object->encode($object->object->extension);
+        $alpha = Intervention::canvas($this->object->width(), $this->object->height(), $color);
+        $alpha->insert($insert_object);
+        $this->object = $alpha;
+        return $this;
+    }
+
+    public function base64($format = null, $quality = 100) 
+    {
+        if(is_null($format)) {
+            $format = $this->object->extension;
+        }
+        $result = (string) $this->object->encode($format, $quality);
+        return base64_encode($result);
     }
 
     /*

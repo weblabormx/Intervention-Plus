@@ -36,11 +36,16 @@ class BasicTest extends TestCase
     }
 
     /** @test */
-    public function save()
+    public function addBackgroundToTransparentImage()
     {
-        $file_name = 'tests/images/picture.jpg';
-        Image::make($file_name)->resize(500, 500)->save('tests/results/test.jpg');
-        $this->assertTrue(file_exists($file_name));
+        Image::make('tests/images/ball.png')->backgroundColor('#ca262c')->save('tests/results/test.jpg');
+        $this->assertTrue(file_exists('tests/results/test.jpg'));
+    }
 
+    /** @test */
+    public function getBase54()
+    {
+        $base_64 = Image::make('tests/images/ball.png')->base64();
+        $this->assertTrue(is_string($base_64));
     }
 }
