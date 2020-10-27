@@ -36,10 +36,24 @@ class BasicTest extends TestCase
     }
 
     /** @test */
-    public function addBackgroundToTransparentImage()
+    public function colorizeWhite()
     {
-        Image::make('tests/images/ball.png')->backgroundColor('#ca262c')->save('tests/results/test.jpg');
-        $this->assertTrue(file_exists('tests/results/test.jpg'));
+        Image::make('tests/images/ball.png')->colorizeWhite('#ca262c')->save('tests/results/colorize-white.png');
+        $this->assertTrue(file_exists('tests/results/colorize-white.png'));
+    }
+
+    /** @test */
+    public function addBackgroundColor()
+    {
+        Image::make('tests/images/ball.png')->backgroundColor('#ca262c')->save('tests/results/background.jpg');
+        $this->assertTrue(file_exists('tests/results/background.jpg'));
+    }
+
+    /** @test */
+    public function addForegroundColor()
+    {
+        Image::make('tests/images/person.png')->foregroundColor('#ca262c')->save('tests/results/foreground.png');
+        $this->assertTrue(file_exists('tests/results/foreground.png'));
     }
 
     /** @test */

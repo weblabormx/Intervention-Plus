@@ -24,10 +24,15 @@ $image = Image::make('tests/picture.jpg')->resize(300, 200);
 
 ## New functions
 
-- **copy()**: To clone the object easily
-- **resizeWithRatio($width, $height)**: Resize keeping the ratio of the image
 - **backgroundColor($color)**: Add background color to a image with transparency
 - **base64($format = null, $quality = 100)**: to get the base 64 of the image
+- **colorizeWhite($color)**: Change white color to another one, put color on hexadecimal
+- **contrast2($level)**: Another function for executing contrast, original function doesnt work with negative values
+- **copy()**: To clone the object easily
+- **get($format = null, $quality = 100)**: Same as encode but format is not required and result is a string
+- **path()**: Get path of the file
+- **resizeWithRatio($width, $height)**: Resize keeping the ratio of the image
+
 
 ### Testing
 
