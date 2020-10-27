@@ -16,7 +16,8 @@
         }
     ],
     "require": {
-        "intervention/image": "dev-master"
+        "intervention/image": "*",
+        "illuminate/collections": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0"

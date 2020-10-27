@@ -19,20 +19,21 @@ Use it exactly the same that intervention static
 ```php
 use WeblaborMX\InterventionPlus\Image;
 
-$image = Image::make('tests/picture.jpg')->resize(300, 200);
+$image = Image::make('tests/picture.jpg')->resizeWithRatio(300, 200);
 ```
 
 ## New functions
 
 - **backgroundColor($color)**: Add background color to a image with transparency
-- **base64($format = null, $quality = 100)**: to get the base 64 of the image
+- **base64($format = null, $quality = 100)**: Get the base 64 of the image
 - **colorizeWhite($color)**: Change white color to another one, put color on hexadecimal
 - **contrast2($level)**: Another function for executing contrast, original function doesnt work with negative values
 - **copy()**: To clone the object easily
+- **foregroundColor($color)**: Change the foreground color of a transparent image
 - **get($format = null, $quality = 100)**: Same as encode but format is not required and result is a string
 - **path()**: Get path of the file
 - **resizeWithRatio($width, $height)**: Resize keeping the ratio of the image
-
+- **transparentCoords()**: Get the coordinates for a transparent image about where the image starts
 
 ### Testing
 

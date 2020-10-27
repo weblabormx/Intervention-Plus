@@ -118,6 +118,85 @@ class Image
         return trim($this->object->dirname.'/'.$this->object->basename, '/');
     }
 
+    public function transparentCoords()
+    {
+        $tmp_file="testimage".rand().".png";
+        file_put_contents($tmp_file, $this->get());
+
+        $img = imagecreatefrompng($tmp_file);
+
+        unlink($tmp_file);
+        
+        $width = imagesx($img);
+        $height = imagesy($img);
+
+        $aryTest = array(-1,-1,-1,-1);
+
+        // Height for
+        $left = [];
+        for ($y = 0; $y < $height; $y++) { 
+            // Width for
+            for ($x = 0; $x < $width; $x++) {
+                $color = imagecolorat($img, $x, $y) >> 24;
+                if ($color < 64) {
+                    $left[$y] = $x;
+                    break;
+                }
+            }
+        }
+        $left = collect($left)->min();
+        
+        // Height for
+        $right = [];
+        for ($y = 0; $y < $height; $y++) { 
+            // Width for
+            for ($x = $width-1; $x > 0; $x--) {
+                $color = imagecolorat($img, $x, $y) >> 24;
+                if ($color < 64) {
+                    $right[$y] = $x;
+                    break;
+                }
+            }
+        }
+        $right = collect($right)->max();
+
+        // Width for
+        $top = [];
+        for ($x = 0; $x < $width; $x++) { 
+            // Height for
+            for ($y = 0; $y < $height; $y++) {
+                $color = imagecolorat($img, $x, $y) >> 24;
+                if ($color < 64) {
+                    $top[$x] = $y;
+                    break;
+                }
+            }
+        }
+        $top = collect($top)->min();
+
+        // Width for
+        $bottom = [];
+        for ($x = 0; $x < $width; $x++) { 
+            // Height for
+            for ($y = $height-1; $y > 0; $y--) {
+                $color = imagecolorat($img, $x, $y) >> 24;
+                if ($color < 64) {
+                    $bottom[$x] = $y;
+                    break;
+                }
+            }
+        }
+        $bottom = collect($bottom)->max();
+        
+        imagedestroy($img);
+        return[
+            'x' => $left,
+            'x2' => $right,
+            'y' => $top,
+            'y2' => $bottom
+        ];
+    }
+
     /*
      * Magic functions
      */

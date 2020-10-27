@@ -62,4 +62,14 @@ class BasicTest extends TestCase
         $base_64 = Image::make('tests/images/ball.png')->base64();
         $this->assertTrue(is_string($base_64));
     }
+
+    /** @test */
+    public function transparentCoords()
+    {
+        $base_64 = Image::make('tests/images/person.png')->transparentCoords();
+        $this->assertEquals(0, $base_64['x']);
+        $this->assertEquals(181, $base_64['y']);
+        $this->assertEquals(1113, $base_64['x2']);
+        $this->assertEquals(1113, $base_64['y2']);
+    }
 }
