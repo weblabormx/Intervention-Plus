@@ -1,11 +1,11 @@
 {
-    "name": "weblabormx/scrapping-plus",
-    "description": "Package for making scrapping with different drivers and one format.",
+    "name": "weblabormx/intervention-plus",
+    "description": "Package that extends invervention/image package and adds new functions.",
     "keywords": [
         "weblabormx",
-        "scrapping-plus"
+        "intervention-plus"
     ],
-    "homepage": "https://github.com/weblabormx/scrapping-plus",
+    "homepage": "https://github.com/weblabormx/intervention-plus",
     "license": "MIT",
     "authors": [
         {
