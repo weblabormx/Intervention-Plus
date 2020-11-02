@@ -56,7 +56,7 @@ class Image
 
     public function colorizeWhite($color) 
     {
-        $tmp_file="testimage".rand().".png";
+        $tmp_file = $this->getTmpName('png');
         file_put_contents($tmp_file, $this->get());
 
         list($r, $g, $b) = sscanf($color, "#%02x%02x%02x");
@@ -83,7 +83,7 @@ class Image
 
     public function contrast2($value) 
     {
-        $tmp_file="testimage".rand().".png";
+        $tmp_file = $this->getTmpName('png');
         file_put_contents($tmp_file, $this->get());
 
         $im = imagecreatefrompng($tmp_file);
@@ -120,7 +120,7 @@ class Image
 
     public function transparentCoords()
     {
-        $tmp_file="testimage".rand().".png";
+        $tmp_file = $this->getTmpName('png');
         file_put_contents($tmp_file, $this->get());
 
         $img = imagecreatefrompng($tmp_file);
@@ -195,6 +195,13 @@ class Image
             'y' => $top,
             'y2' => $bottom
         ];
+    }
+
+    private function getTmpName($format = 'tmp')
+    {
+        $return = tempnam(sys_get_temp_dir(), 'InP');
+        $return = str_replace('.tmp', '.'.$format, $return);
+        return $return;
     }
 
     /*
