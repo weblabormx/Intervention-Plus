@@ -57,7 +57,7 @@ class Image
     public function colorizeWhite($color) 
     {
         $tmp_file = $this->getTmpName('png');
-        file_put_contents($tmp_file, $this->get());
+        file_put_contents($tmp_file, $this->get('png'));
 
         list($r, $g, $b) = sscanf($color, "#%02x%02x%02x");
         $rgb = array($r,$g,$b);
@@ -84,7 +84,7 @@ class Image
     public function contrast2($value) 
     {
         $tmp_file = $this->getTmpName('png');
-        file_put_contents($tmp_file, $this->get());
+        file_put_contents($tmp_file, $this->get('png'));
 
         $im = imagecreatefrompng($tmp_file);
         imagefilter($im, IMG_FILTER_CONTRAST, $value); 
@@ -121,7 +121,7 @@ class Image
     public function transparentCoords()
     {
         $tmp_file = $this->getTmpName('png');
-        file_put_contents($tmp_file, $this->get());
+        file_put_contents($tmp_file, $this->get('png'));
 
         $img = imagecreatefrompng($tmp_file);
 
